@@ -1,0 +1,118 @@
+﻿<Window x:Class="IRS_GUI.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IRS_GUI"
+        mc:Ignorable="d"
+        Title="Summary Form" Height="450" Width="800">
+    <Grid Background="#081f3f">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            
+                <TextBlock FontWeight="Bold" FontSize="15" Background="#6b798c" Grid.Row="0">Record Name: </TextBlock>
+                <TextBlock Name="recordName" Grid.Row="0" FontSize="15" Margin="100,0,0,0"></TextBlock>
+
+
+
+
+
+            <Grid HorizontalAlignment ="Left" Width="800" Grid.Row ="1" Background="#6b798c">
+
+
+                <TextBlock FontWeight="DemiBold"  FontSize="15">Sort by:</TextBlock>
+
+                <ComboBox Name="comboBoxSort" Margin="60,0,0,0" Width="100" Height="20" HorizontalAlignment="Left" SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Position"></ComboBoxItem>
+                    <ComboBoxItem Content="Name"></ComboBoxItem>
+                    <ComboBoxItem Content="Type"></ComboBoxItem>
+                    <ComboBoxItem Content="Length"></ComboBoxItem>
+                    <ComboBoxItem Content="Selected"></ComboBoxItem>
+                </ComboBox>
+
+              
+
+                <Button x:Name="myButton"  Click="MyButton1" Content="Reset"
+                       FontWeight="DemiBold"
+                          FontSize="10" Height="21" Margin="0,0,400,0">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="White"></Setter>
+                            <Setter Property="Width" Value="50"></Setter>
+                        </Style>
+                    </Button.Style>
+
+                </Button>
+
+
+                <Button x:Name="myButton2"  Click="MyButton2" Content="Edit"
+        FontWeight="DemiBold"
+           FontSize="10" Height="21" Margin="0,0,290,0">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="White"></Setter>
+                            <Setter Property="Width" Value="50"></Setter>
+                        </Style>
+                    </Button.Style>
+
+                </Button>
+
+
+                <Button x:Name="myButton3"  Click="MyButton3" Content="Confirm Selections"
+                        FontWeight="DemiBold"
+                                FontSize="10" Height="21" Margin="0,0,130,0">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="White"></Setter>
+                            <Setter Property="Width" Value="100"></Setter>
+                        </Style>
+                    </Button.Style>
+
+                </Button>
+
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+
+          
+                <DataGrid x:Name="myDataGrid"  Height="Auto" Width="770" Margin="0,55,0,10" IsReadOnly="False" AutoGenerateColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False">
+
+                    <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Turquoise"></Setter>
+                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                        <Setter Property="BorderThickness" Value="0.5"></Setter>
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                    </Style>
+                </DataGrid.Resources>
+
+                   <DataGrid.Columns >
+                    <DataGridTextColumn Header="POSITION" Binding="{Binding POSITION}" Width="*" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="SELECT" Binding="{Binding SELECT}" Width="*" IsReadOnly="False" ></DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="NAME" Binding="{Binding NAME}" Width="*" IsReadOnly="True" />
+                    <DataGridTextColumn Header="TYPE" Binding="{Binding TYPE}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="LENGTH" Binding="{Binding LENGTH}" Width="*" IsReadOnly="True" />
+                   </DataGrid.Columns>
+
+                </DataGrid>
+
+            
+            
+            
+        </Grid>
+    </Grid>
+</Window>
+
+
+
