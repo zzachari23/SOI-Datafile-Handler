@@ -1,0 +1,31 @@
+private void ReadXML(string filePath)
+{
+    // Load the XML file from the specified file path into an XDocument object for easy parsing
+    XDocument xmlDoc = XDocument.Load(filePath);
+
+    // Initialize a list to hold the parsed data
+    List<DataType> dataList = new List<DataType>();
+
+    // Iterate over each XML element named "ElementName" that you're interested in
+    foreach (XElement element in xmlDoc.Descendants("ElementName"))
+    {
+        // Extract the value of an attribute named "AttributeName" from the current XML element, if it exists
+        string attributeValue = element.Attribute("AttributeName")?.Value;
+
+        // Extract the text content of a nested element named "NestedElementName" within the current XML element, if it exists
+        string nestedElementValue = element.Element("NestedElementName")?.Value;
+
+        // Create a new instance of your custom data type, initializing it with the extracted attribute and nested element values
+        DataType dataItem = new DataType
+        {
+            AttributeValue = attributeValue,
+            NestedElementValue = nestedElementValue
+        };
+
+        // Add the newly created data item to the list of parsed data
+        dataList.Add(dataItem);
+    }
+
+    // At this point, dataList contains all the parsed data from the XML file
+    // Process stuff here?
+}
