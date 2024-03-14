@@ -147,7 +147,39 @@ namespace IRS_GUI
 
 
         }
+        
+private void ReadXML()
+{
+    XmlDocument xmlDoc = new XmlDocument();
+    xmlDoc.Load(filePath);
+    XmlNode rootNode = xmlDoc.DocumentElement;
+    if (rootNode.HasChildNodes)
+    {
+        XmlNode firstChild = rootNode.FirstChild;
+        foreach (XmlNode node in firstChild.ChildNodes)
+        {
+            if (!dataTable.Columns.Contains(node.Name))
+            {
+                dataTable.Columns.Add(node.Name, typeof(string));
+            }
+        }
 
+        foreach (XmlNode recordNode in rootNode.ChildNodes)
+        {
+            DataRow newRow = dataTable.NewRow();
+            foreach (XmlNode dataNode in recordNode.ChildNodes)
+            {
+                if (dataTable.Columns.Contains(dataNode.Name))
+                {
+                    newRow[dataNode.Name] = dataNode.InnerText;
+                }
+            }
+            dataTable.Rows.Add(newRow);
+        }
+    }
+    DataGrid.ItemsSource = dataTable.DefaultView;
+    originalDataTable = dataTable.Copy();
+}
 
 
         private void ReadTXT()
