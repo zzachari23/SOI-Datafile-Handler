@@ -114,6 +114,10 @@ namespace IRS_GUI
                 Console.WriteLine(comboBoxSelection);
                 ReadEXCEL();
             }
+            else if (fileExtension == ".xml") {
+    ReadXML();
+}
+
         }
 
         private void ReadEXCEL() {
